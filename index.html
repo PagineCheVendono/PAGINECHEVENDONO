@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PagineCheVendono — La tua pagina scritta in 48 ore</title>
+  <meta name="description" content="Copy professionale per coach, consulenti e infoproduttori italiani. Pagina che Vende da 247€ o Da Zero a Online da 500€.">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FAF7F0;
+      --ink: #111111;
+      --yellow: #F5C518;
+      --white: #FFFFFF;
+      --border: #E0DBD0;
+      --muted: #777770;
+      --sidebar: 28px;
+    }
+
+    html, body { overflow-x: hidden; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 18px;
+      line-height: 1.65;
+      padding-left: var(--sidebar);
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: var(--sidebar);
+      background: var(--ink);
+      z-index: 100;
+    }
+
+    main { max-width: 720px; margin: 0 auto; padding: 0 28px; }
+
+    h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; font-weight: 800; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+    h3 { font-size: 1.15rem; font-weight: 700; }
+    p + p { margin-top: 1rem; }
+    em { font-style: italic; }
+
+    section { padding: 72px 0; border-top: 1px solid var(--border); }
+    .hero { padding: 72px 0 56px; border-top: none; }
+
+    .label {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 26px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s;
+      line-height: 1;
+    }
+    .btn { transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s; }
+    .btn:hover, .btn:active {
+      background: var(--yellow) !important;
+      color: #0d0d0d !important;
+      border-color: var(--yellow) !important;
+      box-shadow: 0 0 18px rgba(245, 197, 24, 0.45) !important;
+      opacity: 1 !important;
+    }
+    .btn-primary { background: var(--ink); color: var(--white); }
+    .btn-outline { background: transparent; color: var(--ink); border: 2.5px solid var(--ink); }
+
+    .cta-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+    /* Servizi */
+    .services { display: grid; gap: 3px; margin-top: 40px; }
+
+    .service-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      padding: 36px;
+    }
+    .service-card.featured { border-color: var(--ink); border-width: 2.5px; }
+
+    .service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .service-price { text-align: right; }
+    .price-main { font-size: 1.9rem; font-weight: 800; line-height: 1; }
+    .price-future { font-size: 12px; color: var(--muted); margin-top: 5px; }
+
+    .service-includes { list-style: none; margin: 20px 0 28px; }
+    .service-includes li {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      font-size: 16px;
+    }
+    .service-includes li:last-child { border-bottom: none; }
+    .service-includes li::before { content: "✓"; font-weight: 800; flex-shrink: 0; }
+
+    /* Add-on */
+    .addons { margin-top: 24px; padding-top: 24px; border-top: 2px solid var(--border); }
+    .addons-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .addon {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .addon:last-of-type { border-bottom: none; }
+
+    .addon input[type="checkbox"] {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+      cursor: pointer;
+      accent-color: var(--ink);
+    }
+    .addon-info { flex: 1; }
+    .addon-name { font-weight: 600; font-size: 15px; }
+    .addon-desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .addon-price { font-weight: 700; font-size: 15px; flex-shrink: 0; }
+
+    .addon-total {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: var(--bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .addon-total-price { font-size: 1.3rem; font-weight: 800; }
+
+    /* WhatsApp floating button */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      background: #25d366;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      z-index: 998;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      background: #25d366 !important;
+      color: #fff !important;
+      border-color: transparent !important;
+    }
+
+    /* ===== SEZIONE SERVIZI DARK ===== */
+    #servizi {
+      position: relative;
+      border-top: none;
+    }
+    #servizi::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      background: #0d0d0d;
+      z-index: -1;
+    }
+    #servizi .label { background: var(--yellow); color: #0d0d0d; }
+    #servizi h2, #servizi h3 { color: #fff; }
+
+    .card-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      cursor: pointer;
+      user-select: none;
+      gap: 20px;
+    }
+    .card-summary-left { flex: 1; }
+    .card-summary-right { text-align: right; flex-shrink: 0; }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 10px;
+    }
+    .card-tagline { font-size: 14px; color: #888; margin-top: 6px; }
+
+    .card-toggle {
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--yellow);
+      margin-top: 10px;
+      line-height: 1;
+      transition: transform 0.25s ease;
+    }
+    .service-card.open .card-toggle { transform: rotate(45deg); }
+
+    /* A — animazione smooth */
+    .card-body {
+      display: block;
+      max-height: 0;
+      overflow: hidden;
+      padding-top: 0;
+      margin-top: 0;
+      border-top: none;
+      transition: max-height 0.45s ease, padding-top 0.3s ease, margin-top 0.3s ease;
+    }
+    .service-card.open .card-body {
+      max-height: 1200px;
+      padding-top: 24px;
+      margin-top: 24px;
+      border-top: 1px solid #222;
+    }
+
+    /* B — urgency badge pulsante */
+    .urgency-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 10px;
+    }
+    .urgency-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--yellow);
+      flex-shrink: 0;
+      animation: pulse-dot 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.6; }
+    }
+    .urgency-text {
+      font-size: 12px;
+      color: #888;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .urgency-text span { color: var(--yellow); }
+
+    /* C — process steps */
+    .process-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 24px;
+    }
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      text-align: center;
+    }
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--yellow);
+      color: #0d0d0d;
+      font-size: 12px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 8px;
+      flex-shrink: 0;
+    }
+    .step-label { font-size: 12px; font-weight: 700; color: #ccc; line-height: 1.3; }
+    .step-sub { font-size: 11px; color: #555; margin-top: 3px; }
+    .step-arrow {
+      font-size: 14px;
+      color: #333;
+      flex-shrink: 0;
+      margin-bottom: 18px;
+      padding: 0 4px;
+    }
+
+    /* D — sticky CTA */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #0d0d0d;
+      border-top: 1px solid #2a2a2a;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      z-index: 999;
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+    .sticky-cta.visible { transform: translateY(0); }
+    .sticky-label { font-size: 14px; color: #888; }
+    .sticky-label strong { color: #fff; font-weight: 700; }
+
+    .card-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: #0d0d0d;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      margin-bottom: 16px;
+    }
+
+    #servizi .service-card {
+      background: #161616;
+      border: 1.5px solid #2a2a2a;
+      transition: border-color 0.2s;
+    }
+    #servizi .service-card.featured { border-color: var(--yellow); border-width: 2px; }
+    #servizi .price-main { color: #fff; }
+    #servizi .price-future { color: #555; }
+    #servizi .service-includes li { border-bottom-color: #222; color: #ccc; }
+    #servizi .service-includes li::before { color: var(--yellow); }
+    #servizi .addons { border-top-color: #222; }
+    #servizi .addons-label { color: #666; }
+    #servizi .addon { border-bottom-color: #222; color: #ccc; }
+    #servizi .addon-desc { color: #666; }
+    #servizi .addon-price { color: #fff; }
+    #servizi .addon-total { background: #111; border-color: #222; color: #888; }
+    #servizi .addon-total-price { color: var(--yellow); }
+    #servizi .btn-outline { border-color: #444; color: #fff; }
+    #servizi .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* Chi sono — layout affiancato */
+    .chi-sono-inner {
+      display: flex;
+      align-items: stretch;
+      gap: 40px;
+      margin-top: 24px;
+    }
+    .chi-sono-text { flex: 1; }
+    .chi-sono-pagy {
+      flex-shrink: 0;
+      width: 220px;
+      display: flex;
+      align-items: center;
+    }
+    .chi-sono-pagy video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    /* Case study grid */
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 3px;
+      margin-top: 36px;
+    }
+    .case-study-card {
+      border: 1.5px solid var(--border);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .case-study-card.pending {
+      border-style: dashed;
+      opacity: 0.5;
+    }
+    .cs-number {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+    .cs-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      background: #f5f5f5;
+      padding: 3px 10px;
+      align-self: flex-start;
+    }
+    .cs-metrics {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .cs-metric-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .cs-metric-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .cs-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.5;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+    .cs-status {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: auto;
+    }
+    .cs-status.done { color: #2a9d3f; }
+
+    /* Stats */
+    .stats { display: flex; gap: 48px; margin: 28px 0 24px; flex-wrap: wrap; }
+    .stat-num { font-size: 2.8rem; font-weight: 800; line-height: 1; }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+    /* Prova sociale */
+    .social-placeholder {
+      border: 2px dashed var(--border);
+      padding: 48px 32px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Garanzia */
+    .garanzia-box {
+      background: var(--ink);
+      color: var(--white);
+      padding: 48px 40px;
+    }
+    .garanzia-box h2 { color: var(--white); }
+    .garanzia-box p { color: rgba(255,255,255,0.8); margin-top: 1rem; }
+
+    /* FAQ */
+    .faq-item { padding: 22px 0; border-bottom: 1px solid var(--border); }
+    details summary {
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    details summary::after { content: "+"; font-size: 1.4rem; font-weight: 300; }
+    details[open] summary::after { content: "−"; }
+    details p { margin-top: 12px; color: #444; font-size: 16px; }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); }
+
+    /* ===== INTRO SPAZIALE ===== */
+    #intro {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      margin-left: -28px;
+      overflow: hidden;
+      background: #000510;
+    }
+    #space-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    #intro-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 24px;
+      pointer-events: none;
+      z-index: 10;
+    }
+    #intro-headline {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      text-shadow: 0 0 60px rgba(245,197,24,0.5);
+    }
+    #intro-sub {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: rgba(255,255,255,0.6);
+      margin-top: 14px;
+      letter-spacing: 0.01em;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    #intro-btn {
+      display: inline-block;
+      margin-top: 48px;
+      padding: 14px 38px;
+      background: #F5C518;
+      color: #111111;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      pointer-events: all;
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.15s ease;
+    }
+    #intro-btn:hover { transform: translateY(-2px); opacity: 1 !important; }
+
+    #nav-logo-wrap {
+      position: fixed;
+      top: 18px;
+      left: 44px;
+      z-index: 1001;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ink);
+      border: 1.5px solid rgba(245,197,24,0.35);
+      border-radius: 999px;
+      padding: 8px 16px 8px 10px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #nav-logo-wrap:hover {
+      border-color: #F5C518;
+      box-shadow: 0 0 14px rgba(245,197,24,0.25);
+    }
+
+    #nav-logo {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+
+    #nav-logo-wrap span {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s ease;
+    }
+
+    #nav-logo-wrap:hover span,
+    #nav-logo-wrap.menu-open span {
+      color: #F5C518;
+    }
+
+    #nav-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: var(--ink);
+      min-width: 220px;
+      padding: 6px 0;
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    #nav-menu.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    #nav-menu a {
+      display: block;
+      padding: 11px 22px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.12s, background 0.12s;
+      border-left: 2px solid transparent;
+    }
+
+    #nav-menu a:hover {
+      color: var(--yellow);
+      background: rgba(255,255,255,0.04);
+      border-left-color: var(--yellow);
+    }
+    /* ========================== */
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 3px solid var(--yellow);
+      margin: 32px 0;
+      padding: 12px 0 12px 24px;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    /* Lista diagnosi */
+    .diagnosi {
+      list-style: none;
+      margin: 24px 0 0;
+      padding: 0;
+    }
+    .diagnosi li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      padding-left: 20px;
+      position: relative;
+      font-size: 1rem;
+    }
+    .diagnosi li:last-child { border-bottom: none; }
+    .diagnosi li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--yellow);
+      font-weight: 800;
+    }
+
+    /* Hero layout */
+    .hero-inner {
+      display: flex;
+      align-items: flex-end;
+      gap: 24px;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-pagy {
+      width: 150px;
+      flex-shrink: 0;
+      align-self: flex-end;
+    }
+
+    .hero-pagy img,
+    .hero-pagy video {
+      width: 100%;
+      height: auto;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+
+    /* PAGY galleggiante — usato in tutte le sezioni */
+    @keyframes pagy-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .section-pagy {
+      float: right;
+      width: 160px;
+      margin: 0 0 16px 28px;
+      mix-blend-mode: multiply;
+      animation: pagy-float 3.5s ease-in-out infinite;
+    }
+
+    .section-pagy--left {
+      float: left;
+      margin: 0 28px 16px 0;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 600px) {
+      /* Base */
+      body { font-size: 16px; }
+      main { padding: 0 20px; }
+      section { padding: 52px 0; }
+      #intro { margin-left: -20px; }
+
+      /* Intro — testo in basso, PAGY ha spazio sopra */
+      #intro-overlay {
+        justify-content: flex-end;
+        padding: 0 24px 64px;
+      }
+      #intro-headline {
+        font-size: 1.75rem;
+        text-align: left;
+        width: 100%;
+      }
+      #intro-sub {
+        font-size: 0.88rem;
+        text-align: left;
+        width: 100%;
+      }
+      #intro-btn {
+        margin-top: 28px;
+        align-self: flex-start;
+        padding: 13px 28px;
+        font-size: 14px;
+      }
+
+      /* Nav pill — più vicino al bordo sinistro */
+      #nav-logo-wrap {
+        top: 16px;
+        left: 16px;
+      }
+
+      /* Hero */
+      .hero { padding: 44px 0 36px; }
+      .hero-inner { flex-direction: column-reverse; gap: 16px; }
+      .hero-pagy { width: 120px; align-self: flex-end; }
+
+      /* PAGY nelle sezioni — no float su mobile, centrata sopra */
+      .section-pagy, .section-pagy--left {
+        float: none;
+        display: block;
+        width: 100px;
+        margin: 0 auto 20px auto;
+      }
+
+      /* Chi sono */
+      .chi-sono-inner { flex-direction: column-reverse; gap: 20px; }
+      .chi-sono-pagy { width: 130px; align-self: flex-end; }
+
+      /* Stats */
+      .stats { gap: 24px; }
+
+      /* Servizi */
+      .service-card { padding: 22px 18px; }
+      .card-summary { gap: 12px; }
+      .price-main { font-size: 1.5rem; }
+      .process-steps { flex-wrap: wrap; gap: 10px; justify-content: center; }
+      .step-arrow { display: none; }
+      .process-step { min-width: 70px; }
+
+      /* Case study */
+      .case-study-grid { grid-template-columns: 1fr; }
+      .cs-metrics { gap: 16px; }
+
+      /* Garanzia */
+      .garanzia-box { padding: 32px 20px; }
+
+      /* CTA group */
+      .cta-group { flex-direction: column; gap: 12px; }
+      .cta-group .btn { text-align: center; }
+
+      /* Sticky CTA */
+      .sticky-cta { flex-direction: column; align-items: stretch; padding: 12px 20px; gap: 10px; }
+
+      /* WhatsApp — sopra la sticky quando è visibile */
+      .wa-float { bottom: 24px; right: 16px; }
+      .wa-float.lifted { bottom: 160px; }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+</head>
+<body>
+
+<!-- INTRO SPAZIALE -->
+<div id="intro">
+  <canvas id="space-canvas"></canvas>
+  <div id="intro-overlay">
+    <h1 id="intro-headline">Vendere online inizia da qui.</h1>
+    <p id="intro-sub">Pagina che Vende in 48h &nbsp;·&nbsp; Da Zero a Online in 5 giorni.</p>
+    <a id="intro-btn" href="#main-content">Scopri ↓</a>
+  </div>
+</div>
+
+<!-- Nav logo fisso con menu a tendina -->
+<div id="nav-logo-wrap">
+  <img id="nav-logo" src="logo_p.png" alt="PagineCheVendono">
+  <span>
+    <svg width="18" height="14" viewBox="0 0 18 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <rect y="0" width="18" height="2" rx="1"/>
+      <rect y="6" width="18" height="2" rx="1"/>
+      <rect y="12" width="18" height="2" rx="1"/>
+    </svg>
+  </span>
+  <nav id="nav-menu">
+    <a href="#problema">Il problema</a>
+    <a href="#soluzione">La via più corta</a>
+    <a href="#servizi">I servizi</a>
+    <a href="#chi-sono">Chi siamo</a>
+
+    <a href="#garanzia">Garanzia</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contatto">Contatti</a>
+  </nav>
+</div>
+
+<div class="sidebar"></div>
+
+<main id="main-content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="label">Founding client &nbsp;·&nbsp; 10 posti</div>
+        <h1>La tua pagina di vendita.<br>Scritta in 48 ore.</h1>
+        <p style="margin-top: 20px; color: var(--muted); font-size: 1.05rem;">Stai vendendo uno per uno — in DM, a voce, ogni volta da capo.</p>
+        <div class="cta-group">
+          <a href="#servizi" class="btn btn-primary">Vedi i servizi</a>
+          <a href="#soluzione" class="btn btn-outline">Come funziona →</a>
+        </div>
+      </div>
+      <div class="hero-pagy">
+        <video autoplay loop muted playsinline>
+          <source src="pagy_hero.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section id="problema">
+    <div class="label">Il problema</div>
+
+    <video class="section-pagy" autoplay loop muted playsinline>
+      <source src="pagy_mangia.mp4" type="video/mp4">
+    </video>
+
+    <h2>"Ho un'ottima offerta. So quello che faccio. Ho studiato tanto, però non vendo."</h2>
+    <p style="margin-top: 20px;">Se ci sei passato, il resto lo conosci già.</p>
+    <p>Hai costruito qualcosa di reale. Pubblichi, rispondi ai commenti, ogni tanto arrivi anche in esplora. L'audience c'è — piccola, ma c'è. Eppure quando mandi qualcuno sulla pagina di vendita, le persone spariscono.</p>
+    <p>Non capisci perché. Hai provato a riscriverla da solo. L'hai fatta riscrivere da un'AI. Hai comprato un corso di copywriting. Poi un altro.</p>
+
+    <div style="clear:both;"></div>
+
+    <blockquote class="pull-quote">"Da 2 anni di tentativi, fallimenti, test, corsi... diverse migliaia di euro buttate."</blockquote>
+
+    <p>E la pagina converte ancora lo stesso.</p>
+
+    <p>Non è colpa tua. Il tuo servizio è buono. Il problema è come lo presenti.</p>
+
+    <ul class="diagnosi">
+      <li>La pagina parla di te invece di parlare a chi legge.</li>
+      <li>Usa le stesse frasi di tutti gli altri.</li>
+      <li>Non dice mai — in modo diretto — perché scegliere te.</li>
+    </ul>
+  </section>
+
+  <!-- SOLUZIONE -->
+  <section id="soluzione">
+    <div class="label">La via più corta</div>
+
+    <video class="section-pagy section-pagy--left" autoplay loop muted playsinline>
+      <source src="pagy_conserte.mp4" type="video/mp4">
+    </video>
+
+    <h2>Non un altro corso. Una pagina già scritta — calibrata sul tuo caso.</h2>
+    <p style="margin-top: 16px;">Si parte da una ricerca reale, non da un foglio bianco:</p>
+    <ul class="diagnosi">
+      <li>Le parole che usa il tuo target</li>
+      <li>Le obiezioni vere — non quelle che immagini</li>
+      <li>Dove i competitor italiani sono deboli</li>
+    </ul>
+
+    <div style="clear:both;"></div>
+
+    <p class="pull-quote">Non copy generico. Testo costruito sul tuo caso.</p>
+    <p>Il processo si ripete uguale per ogni cliente. 48 ore non sono un bluff: sono la prova che esiste un sistema — non qualcuno che apre un Google Doc sperando venga bene.</p>
+  </section>
+
+  <!-- SERVIZI -->
+  <section id="servizi">
+    <div class="label">Scegli il tuo servizio</div>
+    <h2>Hai già una pagina o parti da zero?</h2>
+    <p style="color: #888; margin-top: 8px;">Due servizi, stesso processo. Clicca per espandere.</p>
+
+    <div class="services">
+
+      <!-- SERVIZIO 1 -->
+      <div class="service-card" id="card-pcv">
+        <div class="card-summary" onclick="toggleCard('card-pcv')">
+          <div class="card-summary-left">
+            <div class="card-tag">Copy only</div>
+            <h3>Pagina che Vende</h3>
+            <p class="card-tagline">Hai già un sito o uno strumento. Serve il copy.</p>
+            <div class="urgency-row">
+              <span class="urgency-dot"></span>
+              <span class="urgency-text"><span id="spots-pcv">8</span>/10 posti founding rimasti</span>
+            </div>
+          </div>
+          <div class="card-summary-right">
+            <div class="price-main">247€</div>
+            <div class="price-future">Founding · da cliente 11: 397€</div>
+            <span class="card-toggle">+</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-pcv">
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-label">Paghi</div>
+              <div class="step-sub">PayPal · Bonifico</div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-label">Onboarding</div>
+              <div class="step-sub">Form 10 min</div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-label">Ricevi il copy</div>
+              <div class="step-sub">Entro 48h</div>
+            </div>
+          </div>
+          <ul class="service-includes">
+            <li>Sales page completa — 9 blocchi strutturati per la conversione</li>
+            <li>Headline principale + variante A/B</li>
+            <li>Copy costruito sulle parole reali del tuo target</li>
+            <li>Consegna in Google Doc entro 48h lavorative</li>
+            <li>2 round di revisione inclusi entro 7 giorni</li>
+          </ul>
+          <a href="https://www.paypal.com/ncp/payment/393QJSLFL6AMN" class="btn btn-primary" target="_blank" rel="noopener">Compra la Pagina che Vende — 247€</a>
+          <p style="font-size: 13px; color: #555; margin-top: 10px;">Stripe · PayPal · Bonifico — form di onboarding entro 10 minuti dalla conferma</p>
+        </div>
+      </div>
+
+      <!-- SERVIZIO 2 -->
+      <div class="service-card featured" id="card-dzo">
+        <div class="card-badge">Più completo</div>
+        <div class="card-summary" onclick="toggleCard('card-dzo')">
+          <div class="card-summary-left">
+            <div class="card-tag">Copy + Sito</div>
+            <h3>Da Zero a Online</h3>
+            <p class="card-tagline">Nessuna pagina, nessun sito. Costruiamo tutto.</p>
+            <div class="urgency-row">
+              <span class="urgency-dot"></span>
+              <span class="urgency-text"><span id="spots-dzo">8</span>/10 posti founding rimasti</span>
+            </div>
+          </div>
+          <div class="card-summary-right">
+            <div class="price-main" id="total-price">500€</div>
+            <div class="price-future">Founding · da cliente 11: 750€</div>
+            <span class="card-toggle">+</span>
+          </div>
+        </div>
+        <div class="card-body" id="body-dzo">
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-label">Paghi</div>
+              <div class="step-sub">WhatsApp</div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-label">Onboarding</div>
+              <div class="step-sub">Form 10 min</div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-label">Vai online</div>
+              <div class="step-sub">Entro 5–7gg</div>
+            </div>
+          </div>
+          <ul class="service-includes">
+            <li>Copy sales page completo — stessa struttura del Servizio 1</li>
+            <li>Pagina web costruita in codice — non un template, non un builder</li>
+            <li>Link attivo e pagina online alla consegna</li>
+            <li>Consegna entro 5–7 giorni lavorativi</li>
+            <li>2 round di revisione inclusi entro 10 giorni</li>
+          </ul>
+          <div class="addons">
+            <div class="addons-label">Aggiungi al tuo pacchetto</div>
+            <label class="addon">
+              <input type="checkbox" data-price="97" onchange="updateTotal()">
+              <div class="addon-info">
+                <div class="addon-name">Logo + Brand Kit</div>
+                <div class="addon-desc">Logo SVG + palette colori + font scelti</div>
+              </div>
+              <div class="addon-price">+97€</div>
+            </label>
+            <label class="addon">
+              <input type="checkbox" data-price="147" onchange="updateTotal()">
+              <div class="addon-info">
+                <div class="addon-name">Sequenza Benvenuto</div>
+                <div class="addon-desc">3 email automatiche — benvenuto, valore, offerta</div>
+              </div>
+              <div class="addon-price">+147€</div>
+            </label>
+            <label class="addon">
+              <input type="checkbox" data-price="197" onchange="updateTotal()">
+              <div class="addon-info">
+                <div class="addon-name">Dominio + Email Professionale</div>
+                <div class="addon-desc">Dominio personalizzato + setup (es. tu@tuosito.com)</div>
+              </div>
+              <div class="addon-price">+197€</div>
+            </label>
+            <div class="addon-total">
+              <span>Totale selezionato</span>
+              <span class="addon-total-price" id="total-display">500€</span>
+            </div>
+          </div>
+          <a id="btn-dzo" href="https://wa.me/393398250102?text=Ciao%2C%20voglio%20acquistare%20Da%20Zero%20a%20Online%20%E2%80%94%20500%E2%82%AC.%0ATotale%3A%20500%E2%82%AC" class="btn btn-primary" style="margin-top: 24px; display: inline-block;" target="_blank" rel="noopener">
+            Inizia Da Zero a Online — <span id="btn-price">500€</span>
+          </a>
+          <p style="font-size: 13px; color: #555; margin-top: 10px;">Seleziona gli add-on · scrivi su WhatsApp · ricevi il link di pagamento entro 10 minuti</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHI SONO -->
+  <section id="chi-sono">
+    <div class="label">Chi è PAGY</div>
+    <div class="chi-sono-inner">
+      <div class="chi-sono-text">
+        <h2>Sono PAGY — la voce di PagineCheVendono.</h2>
+        <div class="stats">
+          <div>
+            <div class="stat-num">0/42</div>
+            <div class="stat-label">copywriter IT posizionati sui creator digitali</div>
+          </div>
+          <div>
+            <div class="stat-num">48h</div>
+            <div class="stat-label">consegna documentata, non stimata</div>
+          </div>
+        </div>
+        <p>Il processo è documentato e si ripete uguale per ogni cliente. Non è esperienza anecdotica — è un sistema: ricerca, struttura, scrittura. Consegna in 48 ore perché il metodo esiste, non perché vado di fretta.</p>
+        <p>Nessun altro copywriter italiano ha scelto questo mercato. PagineCheVendono parla il tuo linguaggio perché viene dallo stesso mondo — non perché lo studia da fuori.</p>
+      </div>
+      <div class="chi-sono-pagy">
+        <video autoplay loop muted playsinline>
+          <source src="pagy_eccomi.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVA SOCIALE — rimossa in fase founding. Reinserire con primo case study reale. -->
+
+  <!-- GARANZIA -->
+  <section id="garanzia" style="padding: 0; border-top: 1px solid var(--border);">
+    <div class="garanzia-box">
+      <div class="label">Garanzia</div>
+      <h2>2 round di revisione inclusi. Nessuna domanda.</h2>
+      <p>Hai 7 giorni dalla consegna per chiedere modifiche — 10 per Da Zero a Online. Due round sono inclusi nel prezzo.</p>
+      <p>Dal terzo round in poi: 50€ a round, fatturati separatamente. Nessun rimborso sul lavoro già consegnato.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="label">Domande frequenti</div>
+    <h2>Le domande che tutti fanno prima di comprare.</h2>
+
+    <div style="margin-top: 36px;">
+      <div class="faq-item">
+        <details>
+          <summary>Funziona se ho pochi follower?</summary>
+          <p>Sì. Il servizio è pensato per chi ha tra 500 e 10.000 follower. Con un'audience piccola non serve un lancio da guru. Serve una pagina che parla chiaro alle persone giuste — quelle che già ti seguono e non hanno ancora comprato.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>Posso scriverla da solo?</summary>
+          <p>Puoi. Il punto è che probabilmente ci hai già provato — e sai com'è andata. Conoscere la struttura di una sales page è diverso da applicarla al tuo caso specifico, con la tua voce, per il tuo pubblico. Quello è il lavoro.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>In 48 ore come può essere davvero buona?</summary>
+          <p>Perché non si parte da zero. Si parte da una ricerca sul tuo mercato, una struttura testata e un processo che si ripete. Il tempo è breve perché il metodo è solido — non perché si taglia qualcosa.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>E se dopo la consegna qualcosa non mi convince?</summary>
+          <p>Hai 2 round inclusi. Dici cosa cambiare, si cambia. Dal terzo round in poi: 50€ a round.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>Per quale tipo di business funziona?</summary>
+          <p>Coaching 1-1, consulenze, corsi, infoprodotti — sì. Se vendi prodotti fisici o hai bisogno di copy per ads, non è il servizio giusto. Scrivimi in DM e ti dico cosa ti serve davvero.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>"Da Zero a Online" — cosa vuol dire pagina costruita in codice?</summary>
+          <p>Non usiamo Carrd, Notion o altri builder. La tua pagina è costruita in HTML e CSS — leggera, veloce, tua. Non dipendi da abbonamenti di terze parti. Alla consegna ricevi un link attivo su un dominio tuo, pronto da usare.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="contatto">
+    <h2>Smetti di spiegare il tuo servizio. Lascia che la pagina lo faccia.</h2>
+    <p style="color: var(--muted); margin-top: 8px;">Sei tra i primi 10 clienti founding. Da cliente 11 i prezzi salgono.</p>
+    <div class="cta-group" style="margin-top: 28px;">
+      <a href="https://www.paypal.com/ncp/payment/393QJSLFL6AMN" class="btn btn-outline" target="_blank" rel="noopener">Pagina che Vende — 247€</a>
+      <a href="#servizi" class="btn btn-primary">Da Zero a Online — da 500€</a>
+    </div>
+    <p style="margin-top: 56px; font-style: italic; color: var(--muted); font-size: 16px;">Ci vediamo sulla pagina. Non sul corso.</p>
+  </section>
+
+  <footer>
+    <p>© 2026 PagineCheVendono · <a href="mailto:andrea.denaro.02modicaa@gmail.com">Contatto</a></p>
+  </footer>
+
+</main>
+
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/393398250102?text=Ciao%2C%20ho%20una%20domanda%20su%20PagineCheVendono." class="wa-float" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<!-- D — sticky CTA bar -->
+<div id="sticky-cta" class="sticky-cta">
+  <div class="sticky-label"><strong id="sticky-name">Pagina che Vende</strong> — Founding client</div>
+  <a id="sticky-btn" href="https://www.paypal.com/ncp/payment/393QJSLFL6AMN" class="btn btn-primary" target="_blank" rel="noopener">
+    Acquista — <span id="sticky-price">247€</span>
+  </a>
+</div>
+
+<script>
+  const ADDON_NAMES = {
+    '97':  'Logo + Brand Kit (+97€)',
+    '147': 'Sequenza Benvenuto (+147€)',
+    '197': 'Dominio + Email Professionale (+197€)'
+  };
+
+  // A — apri featured card di default
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('card-dzo').classList.add('open');
+    updateStickyCTA();
+  });
+
+  // C+D — toggle card + aggiorna sticky
+  function toggleCard(id) {
+    document.querySelectorAll('.service-card').forEach(card => {
+      if (card.id !== id) card.classList.remove('open');
+    });
+    document.getElementById(id).classList.toggle('open');
+    updateStickyCTA();
+  }
+
+  // D — sticky CTA: mostra/nasconde in base alla sezione e aggiorna contenuto
+  function updateStickyCTA() {
+    const sticky = document.getElementById('sticky-cta');
+    const dzoOpen = document.getElementById('card-dzo').classList.contains('open');
+    const pcvOpen = document.getElementById('card-pcv').classList.contains('open');
+
+    if (dzoOpen) {
+      document.getElementById('sticky-name').textContent = 'Da Zero a Online';
+      document.getElementById('sticky-price').textContent = document.getElementById('total-price').textContent;
+      document.getElementById('sticky-btn').href = document.getElementById('btn-dzo').href;
+    } else if (pcvOpen) {
+      document.getElementById('sticky-name').textContent = 'Pagina che Vende';
+      document.getElementById('sticky-price').textContent = '247€';
+      document.getElementById('sticky-btn').href = 'https://www.paypal.com/ncp/payment/393QJSLFL6AMN';
+    }
+  }
+
+  // D — IntersectionObserver: sticky appare solo dentro #servizi
+  const servizi = document.getElementById('servizi');
+  const stickyBar = document.getElementById('sticky-cta');
+  const waBtn = document.querySelector('.wa-float');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      stickyBar.classList.toggle('visible', e.isIntersecting);
+      if (waBtn) waBtn.classList.toggle('lifted', e.isIntersecting);
+    });
+  }, { threshold: 0.05 });
+  if (servizi) observer.observe(servizi);
+
+  function updateTotal() {
+    const base = 500;
+    let extra = 0;
+    const selected = [];
+
+    document.querySelectorAll('.addon input[type="checkbox"]').forEach(cb => {
+      if (cb.checked) {
+        const price = parseInt(cb.dataset.price);
+        extra += price;
+        selected.push(ADDON_NAMES[cb.dataset.price]);
+      }
+    });
+
+    const total = base + extra;
+    const fmt = total + '€';
+    document.getElementById('total-price').textContent = fmt;
+    document.getElementById('total-display').textContent = fmt;
+    document.getElementById('btn-price').textContent = fmt;
+
+    let msg = 'Ciao, voglio acquistare Da Zero a Online — 500€.';
+    if (selected.length > 0) {
+      msg += '\nAdd-on selezionati:\n— ' + selected.join('\n— ');
+    }
+    msg += '\nTotale: ' + fmt;
+
+    document.getElementById('btn-dzo').href =
+      'https://wa.me/393398250102?text=' + encodeURIComponent(msg);
+
+    updateStickyCTA();
+  }
+</script>
+
+
+<script>
+/* ===== NAV LOGO ===== */
+(function () {
+  const wrap = document.getElementById('nav-logo-wrap');
+  const menu = document.getElementById('nav-menu');
+
+  wrap.addEventListener('click', function (e) {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+    wrap.classList.toggle('menu-open');
+  });
+
+  document.addEventListener('click', function () {
+    menu.classList.remove('open');
+    wrap.classList.remove('menu-open');
+  });
+
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      menu.classList.remove('open');
+    });
+  });
+})();
+/* ==================== */
+
+/* ===== INTRO SPAZIALE ===== */
+(function () {
+
+  const introEl = document.getElementById('intro');
+  const canvas  = document.getElementById('space-canvas');
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 1);
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 500);
+  camera.position.z = 6;
+
+  /* — Stelle — */
+  const N = 2500;
+  const pos = new Float32Array(N * 3);
+  for (let i = 0; i < N; i++) {
+    pos[i*3]   = (Math.random() - .5) * 200;
+    pos[i*3+1] = (Math.random() - .5) * 200;
+    pos[i*3+2] = (Math.random() - .5) * 200;
+  }
+  const starGeo = new THREE.BufferGeometry();
+  starGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  scene.add(new THREE.Points(starGeo,
+    new THREE.PointsMaterial({ color: 0xF5C518, size: 0.2, sizeAttenuation: true })));
+
+  /* — Luci — */
+  scene.add(new THREE.AmbientLight(0x221133, 1.2));
+  const sunLight = new THREE.DirectionalLight(0xffffff, 2);
+  sunLight.position.set(6, 8, 4);
+  scene.add(sunLight);
+
+
+  /* — Texture glow radiale — */
+  function glowTex(inner, outer) {
+    const c = document.createElement('canvas');
+    c.width = c.height = 128;
+    const ctx = c.getContext('2d');
+    const g = ctx.createRadialGradient(64,64,0,64,64,64);
+    g.addColorStop(0,   inner);
+    g.addColorStop(.5,  outer);
+    g.addColorStop(1,   'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, 128, 128);
+    return new THREE.CanvasTexture(c);
+  }
+
+  /* — PAGY sprite — */
+  let pagy, engine, halo;
+  new THREE.TextureLoader().load(
+    'pagy_nella_navicella.png',
+    function (tex) {
+      const imgAspect = tex.image.width / tex.image.height;
+
+      pagy = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: tex, transparent: true, alphaTest: 0.05
+      }));
+      pagy._baseAspect = imgAspect;
+      pagy._baseW = 1;
+      pagy._baseH = 1;
+      scene.add(pagy);
+      computeOrbit();
+
+      engine = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: glowTex('rgba(255,200,60,1)', 'rgba(255,80,0,0.3)'),
+        transparent: true, opacity: .7,
+        blending: THREE.AdditiveBlending, depthWrite: false
+      }));
+      engine.scale.set(W * .5, H * .44, 1);
+      scene.add(engine);
+
+      halo = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: glowTex('rgba(120,160,255,.5)', 'rgba(60,100,255,.08)'),
+        transparent: true, opacity: .28,
+        blending: THREE.AdditiveBlending, depthWrite: false
+      }));
+      halo.scale.set(W * 1.7, H * 1.5, 1);
+      scene.add(halo);
+    },
+    undefined,
+    function () { console.warn('Texture PAGY non trovata — controlla il percorso.'); }
+  );
+
+  let elapsed    = 0;
+  let orbitAngle = 0;
+  const clock    = new THREE.Clock();
+
+  const ORBIT_SPEED = 0.48;
+  let ORBIT_X = 4.2;
+  let ORBIT_Y = 2.3;
+
+  let PAGY_Y_OFFSET = 0;
+
+  function computeOrbit() {
+    const vFov    = camera.fov * Math.PI / 180;
+    const visH    = 2 * Math.tan(vFov / 2) * camera.position.z;
+    const visW    = visH * camera.aspect;
+    const portrait = camera.aspect < 1;
+
+    if (portrait) {
+      /* Mobile: orbita stretta e alta, PAGY grande, centro spostato in alto */
+      ORBIT_X = visW * 0.07;
+      ORBIT_Y = visH * 0.14;
+      PAGY_Y_OFFSET = visH * 0.20;
+      if (pagy && pagy._baseAspect) {
+        const W = visW * 0.72;
+        pagy._baseW = W;
+        pagy._baseH = W / pagy._baseAspect;
+      }
+    } else {
+      /* Desktop/landscape: valori originali */
+      ORBIT_X = visW * 0.38;
+      ORBIT_Y = visH * 0.26;
+      PAGY_Y_OFFSET = 0;
+      if (pagy && pagy._baseAspect) {
+        const H = Math.min(2.8, visW * 0.55);
+        pagy._baseW = H * pagy._baseAspect;
+        pagy._baseH = H;
+      }
+    }
+  }
+  computeOrbit();
+
+  /* Aura distorsiva — anelli concentrici che si espandono e svaniscono */
+  const rings = [];
+  (function buildRings() {
+    const c = document.createElement('canvas');
+    c.width = c.height = 128;
+    const ctx = c.getContext('2d');
+    const g = ctx.createRadialGradient(64,64,28,64,64,64);
+    g.addColorStop(0,    'rgba(0,0,0,0)');
+    g.addColorStop(0.55, 'rgba(140,180,255,0)');
+    g.addColorStop(0.72, 'rgba(160,200,255,0.9)');
+    g.addColorStop(0.88, 'rgba(100,140,255,0.3)');
+    g.addColorStop(1,    'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, 128, 128);
+    const tex = new THREE.CanvasTexture(c);
+    for (let i = 0; i < 3; i++) {
+      const s = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: tex, transparent: true, opacity: 0,
+        blending: THREE.AdditiveBlending, depthWrite: false
+      }));
+      s.userData = { phase: i / 3 }; /* fasi sfalsate */
+      scene.add(s);
+      rings.push(s);
+    }
+  })();
+
+  /* — Loop — */
+  function tick() {
+    requestAnimationFrame(tick);
+    const dt = Math.min(clock.getDelta(), .05);
+    elapsed += dt;
+
+    /* Warp stelle */
+    const warp = 28 * dt;
+    for (let i = 0; i < N; i++) {
+      pos[i*3+2] += warp;
+      if (pos[i*3+2] > camera.position.z + 1) {
+        pos[i*3]   = (Math.random()-.5)*200;
+        pos[i*3+1] = (Math.random()-.5)*200;
+        pos[i*3+2] = -100;
+      }
+    }
+    starGeo.attributes.position.needsUpdate = true;
+
+    if (pagy && pagy._baseW) {
+
+      /* 1. VELOCITÀ NON UNIFORME — più veloce sui lati (Keplero approssimato) */
+      const k = (ORBIT_X*ORBIT_X - ORBIT_Y*ORBIT_Y) / (ORBIT_X*ORBIT_X + ORBIT_Y*ORBIT_Y);
+      const speedFactor = 1 + k * Math.cos(2 * orbitAngle);
+      orbitAngle += ORBIT_SPEED * speedFactor * dt;
+
+      const ox_raw = ORBIT_X * Math.cos(orbitAngle);
+      const oy_raw = ORBIT_Y * Math.sin(orbitAngle);
+
+      /* Velocità tangente */
+      const vx  = -ORBIT_X * Math.sin(orbitAngle) * ORBIT_SPEED * speedFactor;
+      const vy  =  ORBIT_Y * Math.cos(orbitAngle) * ORBIT_SPEED * speedFactor;
+      const spd = Math.sqrt(vx*vx + vy*vy) || 1;
+      const dnx = vx / spd;  /* versore direzione */
+      const dny = vy / spd;
+
+      const ox = ox_raw;
+      const oy = oy_raw;
+      const bob = Math.sin(elapsed * 2.2) * 0.07;
+
+      /* 2. INCLINAZIONE 2 ASSI — roll laterale + pitch naso su/giù */
+      const roll  = -dnx * 0.42;
+      const pitch =  dny * 0.22;
+
+      /* 4. PROFONDITÀ — più grande in basso (vicino), più piccolo in alto (lontano) */
+      const depthScale = 1 - (oy_raw / ORBIT_Y) * 0.10;
+
+      const scaleX = pagy._baseW * depthScale;
+      const scaleY = pagy._baseH * depthScale * (1 + pitch * 0.15);
+      pagy.scale.set(scaleX, scaleY, 1);
+      pagy.position.set(ox, oy + bob + PAGY_Y_OFFSET, 0);
+      pagy.material.rotation = roll;
+
+      /* 6. GLOW RESPIRA CON VELOCITÀ */
+      const maxSpd  = ORBIT_X * ORBIT_SPEED * (1 + k);
+      const spdRatio = Math.min(spd / maxSpd, 1);
+
+      if (engine) {
+        const ex = ox - dnx * 0.3;
+        const ey = oy - dny * 0.3 + bob + PAGY_Y_OFFSET - scaleY * 0.38;
+        engine.position.set(ex, ey, -0.05);
+        engine.scale.set(
+          scaleX * (0.44 + spdRatio * 0.14),
+          scaleY * (0.40 + spdRatio * 0.12), 1
+        );
+        engine.material.opacity = 0.38 + spdRatio * 0.45 + Math.sin(elapsed * 6.5) * 0.1;
+
+      }
+
+      if (halo) {
+        halo.position.set(ox, oy + bob + PAGY_Y_OFFSET, -0.1);
+        halo.scale.set(scaleX * 1.7, scaleY * 1.5, 1);
+        halo.material.opacity = 0.18 + Math.sin(elapsed * 1.8) * 0.06;
+      }
+
+      /* Aura distorsiva — 3 anelli sfalsati che si espandono e svaniscono */
+      const ringBase = scaleX * 1.15;
+      for (let i = 0; i < rings.length; i++) {
+        const r = rings[i];
+        r.userData.phase = (r.userData.phase + dt * 0.38) % 1;
+        const p = r.userData.phase;
+        const rs = ringBase * (0.85 + p * 1.6);
+        r.scale.set(rs, rs, 1);
+        r.position.set(ox, oy + bob + PAGY_Y_OFFSET, -0.09);
+        r.material.opacity = p < 0.18
+          ? (p / 0.18) * 0.32
+          : (1 - p) * 0.32;
+      }
+    }
+
+    renderer.render(scene, camera);
+  }
+  tick();
+
+  /* Resize */
+  window.addEventListener('resize', function () {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    computeOrbit();
+  });
+
+  /* Sequenza testo */
+  function show(id) {
+    const el = document.getElementById(id);
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  }
+  setTimeout(function () { show('intro-headline'); }, 700);
+  setTimeout(function () { show('intro-sub'); },      1600);
+  setTimeout(function () { show('intro-btn'); },      3500);
+
+  /* Scopri → scrolla al contenuto, intro resta in cima */
+  document.getElementById('intro-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+  });
+})();
+/* ========================== */
+</script>
+
+</body>
+</html>
