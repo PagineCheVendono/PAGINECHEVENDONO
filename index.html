@@ -8,6 +8,16 @@
   <link rel="icon" type="image/png" href="logo_p.png">
   <link rel="apple-touch-icon" href="logo_p.png">
 
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2319094');
+  </script>
+  <!-- End MailerLite Universal -->
+
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://paginechevendono.com">
@@ -1189,11 +1199,7 @@
     <div style="margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border);">
       <p style="font-weight: 700; margin-bottom: 8px;">Non sei ancora pronto?</p>
       <p style="color: var(--muted); font-size: 16px; margin-bottom: 20px;">Lascia la tua email — ti scrivo quando ho un posto libero.</p>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display: flex; gap: 8px; flex-wrap: wrap; max-width: 460px;">
-        <input type="email" name="email" placeholder="La tua email" required
-          style="flex: 1; min-width: 200px; padding: 13px 16px; border: 2px solid var(--ink); background: var(--white); font-size: 15px; font-family: inherit; outline: none;">
-        <button type="submit" class="btn btn-primary">Tienimi aggiornato</button>
-      </form>
+      <button class="btn btn-primary ml-onclick-form" onclick="ml('show', 'o8DDZQ', true)">Tienimi aggiornato</button>
     </div>
 
     <p style="margin-top: 40px; font-style: italic; color: var(--muted); font-size: 16px;">Ci vediamo sulla pagina. Non sul corso.</p>
